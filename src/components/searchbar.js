@@ -4,7 +4,7 @@ class SearchBar extends Component {
   render () {
     return (
       <div className="m-4 text-center">
-        <input className="w-75" type="text" />
+        <input className="w-75 py-2" type="text" />
       </div>
     );
   };

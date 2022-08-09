@@ -5,12 +5,35 @@ class VideoList extends Component {
   render () {
     return (
         <ul className="list-group col-md-4">
-            <VideoListItem src='https://i.ytimg.com/vi/9ZNQQKTHLRA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBTOh2u0Qi9gDKe19bAiD1AkHELeA' />
+            <VideoListItem 
+              src='https://i.ytimg.com/vi/T8XYIpiKIuA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCX96_sN8FyMaEn4MLOn5IhPJL7uA'
+              title='Tahsan Song'
+            />
 
-            <VideoListItem src='https://i.ytimg.com/vi/0WtRNGubWGA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvwyLLTygZDCDdt5pIzqQWyNFLdQ'/>
-            <VideoListItem src='https://i.ytimg.com/vi/ytYPtJiR99s/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBv_SRMLysZiq4j8XDCBiEuoC4AxA'/>
-            <VideoListItem src='https://www.youtube.com/watch?v=AyDAfnk8EOo'/>
-            <VideoListItem src='https://i.ytimg.com/an_webp/jEUaZEul13c/mqdefault_6s.webp?du=3000&sqp=CJ61xJcG&rs=AOn4CLD0NwbcK4zBFNmpIqni-nyKk9yO8w'/>
+            <VideoListItem 
+              src='https://i.ytimg.com/vi/9c1NIrAqXe4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB3R0N9HSFYjylrAE0-moBsEwIRYw'
+              title='Habib song'
+            />
+
+            <VideoListItem 
+              src='https://i.ytimg.com/vi/VfHgqY57stU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC9dsYKuqec_d6hYKkWh-egJCAFKA'
+              title='Normal Song'
+            />
+
+            <VideoListItem 
+              src='https://i.ytimg.com/vi/r9AbuWA1zjc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCwNKiq_N3XiAnDGQt-nv2End7Keg'
+              title='Sad Song'
+            />
+
+            <VideoListItem 
+              src='https://i.ytimg.com/vi/SYe-x9ZQF7o/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAJI-XLkvDeYJQVvP31DPDe6kp2GA'
+              title='Romantic Song'
+            />
+
+            <VideoListItem 
+              src='https://i.ytimg.com/vi/2uA4XOmsrrA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDb3XCt-WduqhYrquf1J1Ut9pp4-A'
+              title='Normal Song'
+            />
         </ul>
     );
   };
