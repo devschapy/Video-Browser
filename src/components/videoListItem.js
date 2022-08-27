@@ -3,14 +3,21 @@ import React, { Component } from 'react';
 
 class VideoListItem extends Component {
   render () {
-    const { src, title } = this.props;
+    const {handleSelect, imgUrl, videoId, title, discription } = this.props;
+
     return (
-        <li className="list-group-item media d-flex gap-4 listHover">
-            <img className="w-50" src={src}/>
-            <div className="media-body">
-                {title}
-            </div>
-        </li>
+      <li 
+        onClick={(event) => {
+          handleSelect(videoId, title, discription);
+        }} 
+        className="list-group-item media d-flex listHover gap-3 mb-3"
+      >
+
+        <img className="w-50" src={imgUrl}/>
+        <div className="media-body w-50">
+          {title}
+        </div>
+      </li>
     );
   };
 };

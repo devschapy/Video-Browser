@@ -1,93 +1,103 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-// import SearchBar from './components/searchbar';
-// import VideoDetail from './components/video-detail';
-// import VideoList from './components/video-list';
+import SearchBar from './components/searchbar';
+import VideoDetail from './components/video-detail';
+import VideoList from './components/video-list';
 
 class App extends Component {
   state = {
     searchTerm: '',
-    data: {}
-  }
-
-  handleChange = (event) => {
-    const value = event.target.value;
-    const newState = {searchTerm: value, data: this.state.data};
-    this.setState(newState);
-
+    data: {},
+    videoId: '',
+    title: '',
+    discription: '',
+    searchData: null
   };
+  
+  handleChange = event => this.setState({...this.state, searchTerm: event.target.value});
 
-  componentDidUpdate (prevProps, prevState) {
-    console.log('ami hoilam component did update');
-
-    const getYoutubeVideo = () => {
-
+  clickChange = async (e) => {
+    try {
       const url = 'https://www.googleapis.com/youtube/v3/search';
       const key = 'AIzaSyADeBTK7W_UWd-OJdwjNw-u0jlJ9MOSuP0';
+      // const key = process.env.API_KEY;
       const type = 'video';
       const part = 'snippet';
       const q = this.state.searchTerm;
 
       const targetUrl = `${url}?key=${key}&type=${type}&part=${part}&q=${q}`;
+      const {data} = await axios.get(targetUrl);
 
-      const promise = axios.get(targetUrl);
-
-      const success = (response) => {
-        console.log('succesfull');
-        console.log(response.data);
-
-        const newState = {searchTerm: this.state.searchTerm, data: response.data};
-        this.setState(newState);
-      };
-
-      const error = () => {
-        console.log('error');
-        console.log(error);
-      };
-
-      promise
-          .then(success)
-          .catch(error);
-    };
-    if(prevState.searchTerm !== this.state.searchTerm)getYoutubeVideo();
-
+    const searchData = data.items.filter(i => i.snippet.title.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
+    this.setState({...this.state, searchData: searchData });
+    } catch (error) {
+      console.log(error);
+    }
+ 
   };
 
+  handleSelect = (videoId, title, discription) => {
+    this.setState({...this.state, videoId, title, discription});
+  };
+
+  // componentDidUpdate (prevProps, prevState) {
+  //   console.log('ami hoilam component did update');
+
+  //   const getYoutubeVideo = () => {
+
+  //     const url = 'https://www.googleapis.com/youtube/v3/search';
+  //     const key = 'AIzaSyCCDDvMgctxS0w4aL37zCh6itx90pYhMo4';
+  //     // const key = process.env.API_KEY;
+  //     const type = 'video';
+  //     const part = 'snippet';
+  //     const q = this.state.searchTerm;
+
+  //     const targetUrl = `${url}?key=${key}&type=${type}&part=${part}&q=${q}`;
+
+  //     const promise = axios.get(targetUrl);
+
+  //     const success = (response) => {
+  //       console.log('succesfull');
+  //       console.log(response.data);
+
+  //       const newState = {...this.state, data: response.data};
+  //       this.setState(newState);
+  //     };
+
+  //     const error = () => {
+  //       console.log('error');
+  //       console.log(error);
+  //     };
+
+  //     promise
+  //         .then(success)
+  //         .catch(error);
+  //   };
+  //   if(prevState.searchTerm !== this.state.searchTerm)getYoutubeVideo();
+
+  // };
+
   render () {
-    const items = this.state.data.items || [];
     return (
       <div className="container">
-        <div className="m-4 text-center">
-          <input onChange={this.handleChange} className="w-50 py-1" type="text" />
-          {/* <span className="d-block mt-5">{this.state.searchTerm}</span> */}
-        </div>
+        <SearchBar
+           handleChange={this.handleChange} 
+           clickChange={this.clickChange} 
+           searchTerm={this.state.searchTerm} 
+        />
 
         <div className="row">
-          <div className="col-md-8"></div>
-          <div className="col-md-4">
-            <ul>
-              {
-                items.map(item => {
-                  const imgUrl = item.snippet.thumbnails.high.url;
-                  const title = item.snippet.thumbnails.title;
-
-                  return (
-                    <li className="list-group-item media d-flex listHover mb-3">
-                        <img className="w-50" src={imgUrl}/>
-                        <div className="media-body">
-                            {title}
-                        </div>
-                    </li>
-                );
-                })
-              }
-            </ul>
-          </div>
+          <VideoDetail 
+              videoId={this.state.videoId} 
+              title={this.state.title} 
+              discription={this.state.discription} 
+          />
+          <VideoList items={this.state.searchData || []} handleSelect={this.handleSelect} />
         </div>
       </div>
     );
   };
-} ;
+};
 export default App;
 

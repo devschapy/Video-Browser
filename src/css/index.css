@@ -1,8 +1,7 @@
 
-/* .listHover {
-    transform: translate();
-    transition: ease 1s all ;
-} */
+.listHover {
+    cursor: pointer;
+}
 .listHover:hover{
     background-color: rgb(218, 216, 216);
 }
